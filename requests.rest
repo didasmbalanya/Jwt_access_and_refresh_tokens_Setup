@@ -1,0 +1,25 @@
+@host = http://localhost:3000
+@accessT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRleHRlckBlbWFpbCIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJ1c2VybmFtZSI6IkRleHRlciIsImlhdCI6MTU4ODA2NjgwOX0.6oq78GZKvsUPmtWkAFo7-qXjICBlOPh0jDwNwQ8VzfY
+@accessTDee =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlZUBlbWFpbCIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJ1c2VybmFtZSI6IkRlZSIsImlhdCI6MTU4ODA2NzQwN30.z28PO5-FU2XtVRX5tpUrlI3aMuiKucFR_sEJJwtYXy4
+
+POST {{host}}/post
+Content-Type: application/json
+Authorization: Bearer {{accessTDee}}
+
+{
+  "title": "post4"
+}
+###
+
+POST  {{host}}/login
+Content-Type: application/json
+
+{
+  "email":"dee@email",
+  "password":"password"
+}
+###
+
+GET {{host}}/post
+Content-Type: application/json
+Authorization: Bearer {{accessT}}
