@@ -10,17 +10,6 @@ app.use(express.json());
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
 
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const [user] = users.filter((data) => data.email === email);
-  if (!user) return res.sendStatus(404);
-  const accessToken = jwt.sign(user, accessTokenSecret);
-  res.send({
-    accessToken,
-    email,
-  });
-});
-
 app.post("/post", auth, (req, res) => {
   console.log(req.body)
   const { username, title } = req.body;

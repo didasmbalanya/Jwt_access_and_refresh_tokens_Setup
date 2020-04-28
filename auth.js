@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
     const token = authHeader && authHeader.split(" ").pop();
     if (!token) return res.status(401).send("no token");
     const decoded = jwt.verify(token, accessTokenSecret);
-    req.body.username = decoded.username;
+    req.body.username = decoded.name || decoded.username;
     next();
   } catch (error) {
     res.sendStatus(403);

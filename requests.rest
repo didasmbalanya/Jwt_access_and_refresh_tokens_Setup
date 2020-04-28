@@ -1,25 +1,42 @@
 @host = http://localhost:3000
-@accessT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRleHRlckBlbWFpbCIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJ1c2VybmFtZSI6IkRleHRlciIsImlhdCI6MTU4ODA2NjgwOX0.6oq78GZKvsUPmtWkAFo7-qXjICBlOPh0jDwNwQ8VzfY
-@accessTDee =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlZUBlbWFpbCIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJ1c2VybmFtZSI6IkRlZSIsImlhdCI6MTU4ODA2NzQwN30.z28PO5-FU2XtVRX5tpUrlI3aMuiKucFR_sEJJwtYXy4
+@authHost = http://localhost:4000
+@accessT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRGV4dGVyIiwiaWF0IjoxNTg4MDc2MzE2LCJleHAiOjE1ODgwNzYzMzF9.W-TOhJlYtUW4cg04b0hBpP7zs7BwXSZ9l8FV4ICbK1Y
+@refreshT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRGV4dGVyIiwiaWF0IjoxNTg4MDc3MTM2fQ.sDXr9meL_FXCYBJTlR86umAsR1x0Fe8vdb5zfghRVx8
 
 POST {{host}}/post
 Content-Type: application/json
-Authorization: Bearer {{accessTDee}}
+Authorization: Bearer {{accessT}}
 
 {
   "title": "post4"
 }
 ###
 
-POST  {{host}}/login
+POST  {{authHost}}/login
 Content-Type: application/json
 
 {
-  "email":"dee@email",
+  "email":"dexter@email",
   "password":"password"
 }
 ###
 
+POST {{authHost}}/token
+Content-Type: application/json
+
+{
+  "token":"{{refreshT}}"
+}
+
+###
 GET {{host}}/post
 Content-Type: application/json
-Authorization: Bearer {{accessT}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRGV4dGVyIiwiaWF0IjoxNTg4MDc3MTY2LCJleHAiOjE1ODgwNzcxOTF9.dr40jCT3hR5sm7W0Iahw-Io-HkwI99Msy2DTnhML-WM
+
+###
+DELETE {{authHost}}/logout
+Content-Type: application/json
+
+{
+  "token": "{{refreshT}}"
+}
